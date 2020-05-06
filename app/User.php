@@ -48,12 +48,15 @@ class User extends Authenticatable
         return $this->hasMany(Tweet::class);
     }
     public function getAvatarAttribute(){
-        return "https://i.pravatar.cc/40?u=".$this->email;
+        return "https://i.pravatar.cc/200?u=".$this->email;
     }
     public function follow(User $user){
         return $this->follows()->save($user);
     }
     public function follows(){
         return $this->belongsToMany(User::class,'follows','user_id','following_user_id');
+    }
+    public function getRouteKeyName(){
+        return 'name';
     }
 }

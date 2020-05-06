@@ -9,7 +9,7 @@ class TweetsController extends Controller
     
     public function index()
     {
-        return view('home',['tweets'=>auth()->user()->timeline()]);
+        return view('tweets.index',['tweets'=>auth()->user()->timeline()]);
     }
     public function store(){
      //attributes disimpan dalam array

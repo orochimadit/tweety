@@ -29,7 +29,18 @@
 
     <section class="px-8">
         <main class="py-4">
-            @yield('content')
+            <div class="lg:flex lg:justify-between">
+                <div class="lg:w-32">
+                    @include('_sidebar_links')
+                </div>
+                <div class="lg:flex-1 lg:mx-10 " style="max-width:700px ">
+                    @yield('content')
+                </div>
+                <div class="lg:w-1/6 bg-blue-100 rounded-lg">
+                    @include('_friends_list')
+                    </div>
+            </div>
+           
         </main>
     </div>
     </section>
