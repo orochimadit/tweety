@@ -8,7 +8,7 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable,Followable;
 
     /**
      * The attributes that are mass assignable.
@@ -45,18 +45,12 @@ class User extends Authenticatable
                 orWhere('user_id',$this->id)->latest()->get();
     }
     public function tweets(){
-        return $this->hasMany(Tweet::class);
+        return $this->hasMany(Tweet::class)->latest();
     }
     public function getAvatarAttribute(){
         return "https://i.pravatar.cc/200?u=".$this->email;
     }
-    public function follow(User $user){
-        return $this->follows()->save($user);
-    }
-    public function follows(){
-        return $this->belongsToMany(User::class,'follows','user_id','following_user_id');
-    }
-    public function getRouteKeyName(){
-        return 'name';
+    public function path(){
+        return route('profile',$this->name);
     }
 }
